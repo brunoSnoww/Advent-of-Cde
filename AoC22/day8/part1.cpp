@@ -10,7 +10,6 @@ using namespace std;
 
 vector<int> dx = {0, 0, 1, -1};
 vector<int> dy = {1, -1, 0, 0};
-unordered_map<int, int> bottom, top, _left, _right;
 int ans = 0, N, M;
 bool isEdge(int x, int y) { return x == 0 || x == N - 1 || y == 0 || y == M - 1; }
 bool isValid(int x, int y) { return x >= 0 && x < N && y >= 0 && y < M; }
