@@ -32,7 +32,7 @@ void bfs(const vector<string> &matrix)
             if (isValid(nx, ny) && d[nx][ny] == -1)
             {
                 int d1 = matrix[x][y] - 'a', d2 = matrix[nx][ny] - 'a';
-                if (d2 <= d1 || d2 == d1 + 1)
+                if (d2 <= d1 + 1)
                 {
                     d[nx][ny] = d[x][y] + 1;
                     q.push(ii(nx, ny));
