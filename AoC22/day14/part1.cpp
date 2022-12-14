@@ -69,23 +69,15 @@ bool moveSand(ii &sand)
 {
     int x = sand.first, y = sand.second;
     ii p1(x + 1, y), p2(x + 1, y - 1), p3(x + 1, y + 1);
-    // cout << x << " " << y << endl;
+    for (ii p : {p1, p2, p3})
+    {
+        if (!rocks.count(p) && !sands.count(p))
+        {
+            sand = p;
+            return true;
+        }
+    }
 
-    if (!rocks.count(p1) && !sands.count(p1))
-    {
-        sand = p1;
-        return true;
-    }
-    if (!rocks.count(p2) && !sands.count(p2))
-    {
-        sand = p2;
-        return true;
-    }
-    if (!rocks.count(p3) && !sands.count(p3))
-    {
-        sand = p3;
-        return true;
-    }
     sands.insert(sand);
     return false;
 }
