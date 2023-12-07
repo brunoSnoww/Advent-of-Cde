@@ -138,7 +138,7 @@ void print(vector<string> &g, int x, int y, string dir)
         }
         cout << endl;
     }
-    usleep(5000); // sample test
+    usleep(100000); // sample test
 }
 
 int main(void)
@@ -208,7 +208,7 @@ int main(void)
             while (t--)
             {
                 move(x, y, grid, currDir);
-                // print(grid, x, y, currDir);
+                print(grid, x, y, currDir);
             }
         }
     }

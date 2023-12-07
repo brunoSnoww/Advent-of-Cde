@@ -50,8 +50,7 @@ unordered_map<string, Node> mp;
 vector<Node> v;
 double getVal(string nodeId)
 {
-    if (nodeId == "humn")
-        cout << "FUCK" << endl;
+
     if (mp[nodeId].value != INF)
     {
         // cout << mp[nodeId].value << endl;
@@ -83,7 +82,24 @@ int main(void)
         mp[currentId] = v[i];
         i++;
     }
-    cout << (ll)getVal("root") << endl;
+    ll P = (ll)getVal("rmtt"); // fixo
+    while (true)
+    {
+        cout << mp["plmp"].value << endl;
+
+        ll P2 = (ll)getVal("plmp");
+        cout << mp["plmp"].value << endl;
+        if (P < P2)
+            mp["humn"].value += 10000000;
+        else if (P == P2)
+        {
+            cout << mp["humn"].value;
+            break;
+        }
+        else
+            mp["humn"].value--;
+        mp["plmp"].value = INF;
+    }
 
     return 0;
 }

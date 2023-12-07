@@ -7,6 +7,9 @@
 #include <unordered_map>
 #include <vector>
 using namespace std;
+#include <unistd.h>
+#include <cstdlib>
+
 typedef pair<int, int> ii;
 set<ii> rocks;
 set<ii> sands;
@@ -30,6 +33,31 @@ vector<string> tokenize(string s, string del = " ")
     return strs;
 }
 
+void print(ii sand, int iter)
+{
+    printf("\033[2J\033[1;1H"); // reset terminal
+    puts("");
+    for (int c = 0; c <= LIMIT + 2; c++)
+    {
+        for (int r = 490; r <= 550; ++r)
+        {
+            ii p(c, r);
+            if (c == SOURCE_X && r == SOURCE_Y)
+                printf("+ ");
+            else if (rocks.count(p))
+                printf("# ");
+            else if (sands.count(p) || p == sand)
+                printf("o ");
+            else
+                printf(". ");
+        }
+        printf("\n");
+    }
+    puts("");
+    fflush(stdout);
+
+    usleep(100000); // sample test
+}
 void drawRocks()
 {
     while (getline(cin, input))
@@ -77,28 +105,33 @@ bool moveSand(ii &sand)
             return true;
         }
     }
-
     sands.insert(sand);
     return false;
 }
 
 int main(void)
-{
+{ // Providing a seed value
+    srand((unsigned)time(NULL));
     drawRocks();
-
     for (int i = -1000; i <= 1000; ++i)
     {
         rocks.insert(ii(LIMIT + 2, i));
     }
     int rep = 1;
+
     while (true)
     {
         ii sand(SOURCE_X, SOURCE_Y);
+        printf("\033[1;%dm", 31 + (rand() % 7)); // start color
+
         while (moveSand(sand))
         {
+            print(sand, rep);
             if (sand.first == SOURCE_X && sand.second == SOURCE_Y)
                 break;
         }
+        printf("\033[0m"); // end color
+
         if (sand.first == SOURCE_X && sand.second == SOURCE_Y)
             break;
         rep++;

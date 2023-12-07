@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 struct P {
     dest: u64,
     source: u64,
@@ -5,13 +7,24 @@ struct P {
 }
 fn main() {
     let mut iter = include_str!("./input5.txt").split("\n");
-    let mut seeds: Vec<u64> = iter
+    let mut _seeds: Vec<u64> = iter
         .next()
         .unwrap()
         .split_whitespace()
         .map(|x| x.parse::<u64>().unwrap())
         .collect();
 
+    let mut i = 0;
+
+    let mut seeds_ = HashSet::new();
+
+    while i + 1 < _seeds.len() {
+        for j in _seeds[i]..(_seeds[i] + _seeds[i + 1]) {
+            seeds_.insert(j);
+        }
+        i += 2;
+    }
+    let mut seeds = Vec::from_iter(seeds_);
     let groups = include_str!("./input5.txt").split("\n\n");
 
     groups.for_each(|g| {

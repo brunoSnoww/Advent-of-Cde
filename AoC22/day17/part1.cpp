@@ -159,8 +159,6 @@ void print(vector<ii> shape)
     }
     puts("");
     fflush(stdout);
-
-    usleep(500000); // sample test
 }
 
 int main(void)
