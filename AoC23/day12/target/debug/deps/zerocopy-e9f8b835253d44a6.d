@@ -1,0 +1,14 @@
+/Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day12/target/debug/deps/libzerocopy-e9f8b835253d44a6.rmeta: /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/lib.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/macros.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/macro_util.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/util.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/third_party/rust/layout.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/wrappers.rs
+
+/Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day12/target/debug/deps/libzerocopy-e9f8b835253d44a6.rlib: /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/lib.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/macros.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/macro_util.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/util.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/third_party/rust/layout.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/wrappers.rs
+
+/Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day12/target/debug/deps/zerocopy-e9f8b835253d44a6.d: /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/lib.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/macros.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/macro_util.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/util.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/third_party/rust/layout.rs /Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/wrappers.rs
+
+/Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/lib.rs:
+/Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/macros.rs:
+/Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/macro_util.rs:
+/Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/util.rs:
+/Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/third_party/rust/layout.rs:
+/Users/brunoneves/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zerocopy-0.7.30/src/wrappers.rs:
+
+# env-dep:CARGO_PKG_VERSION=0.7.30
