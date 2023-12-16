@@ -1,0 +1,1 @@
+/Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/day13/target/debug/day13: /Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/day13/src/input13.txt /Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/day13/src/main.rs
