@@ -1,1 +1,0 @@
-/Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day5/target/debug/day5: /Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day5/src/input5.txt /Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day5/src/main.rs

@@ -1,1 +1,0 @@
-/Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day15/target/debug/ay15: /Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day15/src/main.rs /Users/brunoneves/Desktop/personalProjects/Advent-of-Cde/AoC23/day15/src/test.txt
