@@ -1,113 +1,121 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 
-struct State {
-    pub id: String,
-    pub rules: Vec<String>,
-}
-#[derive(Debug)]
-struct Config {
-    x: i64,
-    m: i64,
-    a: i64,
-    s: i64,
-}
-
-impl State {
-    pub fn next_state(&self, idx: usize, config: &Config) -> Option<String> {
-        let r = self.rules[idx].clone();
-        if r.contains("<") || r.contains(">") {
-            let sgn = if r.contains("<") { "<" } else { ">" };
-            let parts: Vec<&str> = r.split(sgn).collect();
-            let c = parts[0];
-            let parts2: Vec<&str> = parts[1].split(":").collect();
-            let val: i64 = parts2[0].parse().unwrap();
-            let next_state = parts2[1];
-            let config_val = match c {
-                "x" => config.x,
-                "m" => config.m,
-                "a" => config.a,
-                "s" => config.s,
-                _ => unreachable!(),
-            };
-            let condition = if sgn == "<" {
-                config_val < val
-            } else {
-                config_val > val
-            };
-            if condition {
-                return Some(next_state.to_string());
-            } else {
-                return None;
+fn dfs(
+    states: &HashMap<String, Vec<(String, Vec<String>)>>,
+    curr_state: String,
+    cts: &HashMap<String, Vec<String>>,
+    ans: &mut i64,
+) {
+    if curr_state == "A" {
+        let mut x: i64 = 4000;
+        let mut m: i64 = 4000;
+        let mut a: i64 = 4000;
+        let mut s: i64 = 4000;
+        for c in ["x", "m", "a", "s"] {
+            if let Some(ccs) = cts.get(c) {
+                let mut min = 0;
+                let mut max = 4001;
+                for r in ccs {
+                    if r.contains(">") {
+                        let pts: Vec<&str> = r.split(">").collect();
+                        min = min.max(pts[1].parse().unwrap());
+                    }
+                    if r.contains("<") {
+                        let pts: Vec<&str> = r.split("<").collect();
+                        max = max.min(pts[1].parse().unwrap());
+                    }
+                }
+                let amount = max - min - 1;
+                if c == "x" {
+                    x = amount;
+                } else if c == "m" {
+                    m = amount;
+                } else if c == "a" {
+                    a = amount;
+                } else {
+                    s = amount;
+                }
             }
         }
-        Some(r.to_string())
+        *ans += (x * m * a * s);
+
+        return;
     }
-    pub fn process(&self, config: &Config) -> String {
-        for i in 0..self.rules.len() {
-            if let Some(next_state) = self.next_state(i, config) {
-                return next_state;
+
+    if let Some(st) = states.get(&curr_state) {
+        for (next, rules) in st {
+            let mut cts2 = cts.clone();
+            for r in rules {
+                for c in ["x", "m", "a", "s"] {
+                    if r.contains(c) {
+                        cts2.entry(c.to_string())
+                            .or_insert(Vec::new())
+                            .push(r.clone());
+                    }
+                }
             }
+            dfs(states, next.clone(), &cts2, ans);
         }
-        unreachable!();
     }
+}
+
+fn inverse_rule(rule: &str) -> String {
+    if rule.contains("<") {
+        let parts: Vec<&str> = rule.split("<").collect();
+        let ns = parts[0];
+        let v: i64 = parts[1].parse().unwrap();
+        let new_rule = format!("{}>{}", ns, v - 1);
+        return new_rule;
+    }
+    if rule.contains(">") {
+        let parts: Vec<&str> = rule.split(">").collect();
+        let ns = parts[0];
+        let v: i64 = parts[1].parse().unwrap();
+        let new_rule = format!("{}<{}", ns, v + 1);
+        return new_rule;
+    }
+    unreachable!();
 }
 
 fn main() {
     let g: Vec<&str> = include_str!("./input19.txt").split("\n\n").collect();
     let states_desc = g[0].lines();
-    let mut states = HashMap::new();
+    let mut states: HashMap<String, Vec<(String, Vec<String>)>> = HashMap::new();
     for s in states_desc {
         let parts: Vec<&str> = s.split("{").collect();
         let id = parts[0].to_string();
-        let id2 = id.clone();
-        let rules: Vec<String> = parts[1][..parts[1].len() - 1]
+        let mut rules: Vec<(String, String)> = parts[1][..parts[1].len() - 1]
             .split(",")
-            .map(|x| x.to_string())
-            .collect();
-        let st = State { id, rules };
-        states.insert(id2, st);
-    }
-
-    let configs: Vec<Config> = g[1]
-        .lines()
-        .map(|config| {
-            let parts: Vec<i64> = config[1..config.len() - 1]
-                .split(",")
-                .map(|s| {
-                    let p: Vec<&str> = s.split("=").collect();
-                    p[1].parse::<i64>().unwrap()
-                })
-                .collect();
-
-            Config {
-                x: parts[0],
-                m: parts[1],
-                a: parts[2],
-                s: parts[3],
-            }
-        })
-        .collect();
-
-    let mut ans: i64 = 0;
-
-    configs.iter().for_each(|c| {
-        let mut curr_state = states.get(&"in".to_string()).unwrap();
-
-        loop {
-            let next_state = curr_state.process(c);
-            if next_state == "A" || next_state == "R" {
-                if next_state == "A" {
-                    ans += c.x;
-                    ans += c.m;
-                    ans += c.a;
-                    ans += c.s;
+            .map(|x| {
+                if x.contains(":") {
+                    let str = x.to_string();
+                    let pts: Vec<&str> = str.split(":").collect();
+                    return (pts[1].to_string(), pts[0].to_string());
+                } else {
+                    return (x.to_string(), "None".to_string());
                 }
-                break;
-            } else {
-                curr_state = states.get(&next_state).unwrap();
+            })
+            .collect();
+
+        let mut acc: Vec<String> = Vec::new();
+        for (next_state, rule) in rules {
+            let mut acc2 = acc.clone();
+            if rule != "None" {
+                acc2.push(rule.to_string());
+            }
+            states
+                .entry(id.clone())
+                .or_insert(Vec::new())
+                .push((next_state, acc2));
+
+            if rule != "None" {
+                acc.push(inverse_rule(&rule));
             }
         }
-    });
+    }
 
-    println!("Part1: {}", ans);
+    let mut ans: i64 = 0;
+    let mut cts = HashMap::new();
+    dfs(&states, "in".to_string(), &cts, &mut ans);
+    println!("{}", ans);
 }
