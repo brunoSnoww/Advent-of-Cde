@@ -154,6 +154,6 @@ fn main() {
         }
         graph = next_graph;
     }
-    let part1 = graph.iter().flatten().filter(|c| **c == '#').count();
-    println!("{:?}", part1);
+    let part2 = graph.iter().flatten().filter(|c| **c == '#').count();
+    println!("{:?}", part2);
 }
